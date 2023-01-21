@@ -12,15 +12,24 @@ public class PersonGenerator {
         ArrayList<String> data = new ArrayList<>();
         String[] fields;
         boolean over = false;
+        int YOB;
         Scanner sc = new Scanner(System.in);
-        String info, fileName;
+        String FName, LName, ID, Title, fileName, CSV;
 
         while (!over) {
-            info = SafeInput.getNonZeroLenString(sc, "Please enter data one person at a time (E to exit): ");
-            if (info.equalsIgnoreCase("e")) {
+            FName = SafeInput.getNonZeroLenString(sc, "Please enter the person's first name (e to exit): ");
+            if (FName.equalsIgnoreCase("e")) {
                 over = true;
             } else {
-                data.add(info);
+                LName = SafeInput.getNonZeroLenString(sc, "Please enter the person's last name: ");
+                ID = SafeInput.getNonZeroLenString(sc, "Please enter the person's ID: ");
+                Title = SafeInput.getNonZeroLenString(sc, "Please enter the person's title: ");
+                YOB = SafeInput.getInt(sc, "Please enter the person's Year of birth: ");
+
+                Person p = new Person(FName, LName, ID, Title, YOB);
+                CSV = p.toCSVDataRecord(p.getFirstname(), p.getLastName(), p.getID(), p.getTitle(), p.getYOB());
+
+                data.add(CSV);
             }
         }
 

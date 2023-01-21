@@ -12,7 +12,11 @@ public class PersonReader {
         ArrayList<String> list = new ArrayList<>();
         File selectedFile;
         String[] fields;
-        String ID, FirstName, LastName, Title, rec;
+        String ID;
+        String FirstName;
+        String LastName;
+        String Title;
+        String rec;
         int YearOfBirth;
 
         try {
@@ -30,7 +34,6 @@ public class PersonReader {
 
                 while (reader.ready()) {
                     rec = reader.readLine();
-
                     list.add(rec);
                 }
                 reader.close();
@@ -47,6 +50,8 @@ public class PersonReader {
                         LastName = fields[2].trim();
                         Title = fields[3].trim();
                         YearOfBirth = Integer.parseInt(fields[4].trim());
+
+                        Person addition = new Person(FirstName, LastName, ID, Title, YearOfBirth);
 
 
                         System.out.printf("%-10s", ID);
