@@ -42,4 +42,8 @@ public class Product {
     public void setCost(double cost) {
         this.cost = cost;
     }
+
+    public String toCSVDataRecord(String name, String description, String ID, double cost) {
+        return ID + ", " + name + ", " + description + ", " + cost;
+    }
 }

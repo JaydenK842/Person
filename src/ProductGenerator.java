@@ -13,16 +13,23 @@ public class ProductGenerator {
         String[] fields;
         ArrayList<String> items = new ArrayList<>();
         boolean over = false;
-        String newInfo, fileName;
+        String name, description, ID, fileName, CSV;
+        double cost;
 
 
         while (!over) {
-            newInfo = SafeInput.getNonZeroLenString(sc, "Input one item at a time (E to exit): ");
-
-            if (newInfo.equalsIgnoreCase("e")) {
+            name = SafeInput.getNonZeroLenString(sc, "Please enter the product's name (e to exit): ");
+            if (name.equalsIgnoreCase("e")) {
                 over = true;
             } else {
-                items.add(newInfo);
+                description = SafeInput.getNonZeroLenString(sc, "Please enter the product's description: ");
+                ID = SafeInput.getNonZeroLenString(sc, "Please enter the product's ID: ");
+                cost = SafeInput.getDouble(sc, "Please enter the product's cost: ");
+
+                Product p = new Product(name, description, ID, cost);
+                CSV = p.toCSVDataRecord(p.getName(), p.getDescription(), p.getID(), p.getCost());
+
+                items.add(CSV);
             }
         }
 
